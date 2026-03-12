@@ -30,6 +30,16 @@ io.on("connection", (socket) => {
     console.log("Mapped user:", userId, "->", socket.id);
   }
 
+  socket.on("typing", ({ receiverId }) => {
+  const receiverSocketId = getReceiverSocketId(receiverId);
+
+  if (receiverSocketId) {
+    io.to(receiverSocketId).emit("typing", {
+      senderId: socket.handshake.auth.userId,
+    });
+  }
+});
+
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {

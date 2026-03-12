@@ -20,9 +20,13 @@ const App = () => {
 
   console.log({ onlineUsers });
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+useEffect(() => {
+  checkAuth();
+}, []);
+
+  // useEffect(() => {
+  //   checkAuth();
+  // }, [checkAuth]);
 
   console.log({ authUser });
 
